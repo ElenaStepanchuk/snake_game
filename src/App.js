@@ -1,6 +1,7 @@
 import Enter from './components/enter/Enter';
 
 import './App.css';
+import AllUsersList from '../src/components/allUsersList/AllUsersList';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <h1>Snake game</h1>
       </header>
       <Enter />
+      <AllUsersList />
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import CreateUser from '../../api/createUser/createUser';
 import './enter.css';
 
 const Enter = () => {
@@ -8,10 +9,16 @@ const Enter = () => {
     const { value } = event.target;
     setName(value);
   };
-  const startGame = event => {
+
+  const startGame = async event => {
     event.preventDefault();
-    console.log('name:', name);
-    setName('');
+    try {
+      const user = await CreateUser(name);
+      console.log('user:', user);
+      setName('');
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
   };
 
   return (
@@ -25,7 +32,7 @@ const Enter = () => {
           className="input_name"
           onChange={handleInputChange}
         ></input>
-        <button className="form_button" type="submit" onClick={startGame}>
+        <button className="form_button" type="submit">
           Enter game
         </button>
       </form>
