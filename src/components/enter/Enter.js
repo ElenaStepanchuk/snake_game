@@ -11,7 +11,6 @@ const Enter = () => {
   };
 
   const startGame = async event => {
-    event.preventDefault();
     try {
       const user = await CreateUser(name);
       console.log('user:', user);

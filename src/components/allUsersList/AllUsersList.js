@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import getAllUsers from '../../api/getAllUsers/getAllUsers';
 
+import './allUsersList.css';
+
 const AllUsersList = () => {
   const [users, setUsers] = useState([]);
 
@@ -15,11 +17,13 @@ const AllUsersList = () => {
 
   return (
     <div>
-      <h2>List of record holders:</h2>
-      <ul>
+      <h2 className="list_title">List of record holders:</h2>
+      <ul className="user_list">
         {users.map(user => (
           <li key={user.id}>
-            {user.user_name} Record: {user.points}
+            <p className="user_item">
+              {user.user_name} <span className="item_span">Record:</span> {user.points}
+            </p>
           </li>
         ))}
       </ul>

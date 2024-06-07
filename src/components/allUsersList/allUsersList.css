@@ -1,0 +1,31 @@
+.list_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #3f4450;
+  margin-bottom: 20px;
+}
+.user_list {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  list-style-type: none;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 20px;
+}
+.user_item {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #3f4450;
+  margin-bottom: 10px;
+}
+.item_span {
+  margin-left: auto;
+  margin-right: 10px;
+}
