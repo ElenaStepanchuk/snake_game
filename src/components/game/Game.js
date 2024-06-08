@@ -22,7 +22,7 @@ const Game = () => {
 
   return (
     <div className="field">
-      <Cells/>
+      <Cells />
     </div>
   );
 };
