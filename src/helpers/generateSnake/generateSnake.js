@@ -1,6 +1,5 @@
 import './generateSnake.css';
 import move from '../move/move';
-import collision from '../colision/collision';
 
 const generateSnake = (snakePos, feedPos) => {
   let snakeBody = [
@@ -22,7 +21,5 @@ const generateSnake = (snakePos, feedPos) => {
   if (snakeBody[0]) {
     setInterval(move, 400, { snakeBody, feedBody });
   }
-
-  // collision({ snakeBody, feedBody });
 };
 export default generateSnake;

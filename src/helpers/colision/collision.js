@@ -1,8 +1,7 @@
-import generateFeed from '../generateFeed/generateFeed';
+// import generateFeed from '../generateFeed/generateFeed';
 import generatePosition from '../../helpers/generatePosition/generatePosition';
 
 const collision = ({ snakeBody, feedBody }) => {
-  //   console.log({ snakeBody, feedBody });
   if (
     snakeBody &&
     feedBody &&
@@ -12,16 +11,15 @@ const collision = ({ snakeBody, feedBody }) => {
     snakeBody[0].getAttribute('posy') === feedBody[0].getAttribute('posy')
   ) {
     feedBody[0].classList.remove('feedBody');
-    console.log('feedBody[0]:', feedBody[0]);
 
     let x = snakeBody[snakeBody.length - 1].getAttribute('posx');
     let y = snakeBody[snakeBody.length - 1].getAttribute('posy');
     snakeBody.push(document.querySelector(`[posx='${x}'][posy='${y}']`));
 
-    const [posXF, posYF] = generatePosition();
-    generateFeed([posXF, posYF]);
-    console.log('feedBody[0]:', feedBody[0]);
-    console.log('shouldGenerateFeed');
+    // const [posXF, posYF] = generatePosition();
+    // generateFeed([posXF, posYF]);
+    let newPosition = generatePosition();
+    console.log('newPosition:', newPosition);
   }
 
   if (snakeBody[0]) {
