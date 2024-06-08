@@ -3,17 +3,25 @@ import React, { useState, useEffect } from 'react';
 import './game.css';
 import Cells from '../cells/Cells';
 import generateSnake from '../../helpers/generateSnake/generateSnake';
-import generateSnakePosition from '../../helpers/generateSnakePosition/generateSnakePosition';
+import generateFeed from '../../helpers/generateFeed/generateFeed';
+import generatePosition from '../../helpers/generatePosition/generatePosition';
+// import move from '../../helpers/move/move';
 
 const Game = () => {
   const [snakePos, setSnakePos] = useState([1, 1]);
+  const [feedPos, setFeedPos] = useState([1, 1]);
 
   useEffect(() => {
-    const [posX, posY] = generateSnakePosition();
+    const [posX, posY] = generatePosition();
     setSnakePos([posX, posY]);
+    const [posXF, posYF] = generatePosition();
+    setFeedPos([posXF, posYF]);
   }, []);
 
   generateSnake(snakePos);
+  generateFeed(feedPos);
+
+  // let interval = setInterval(move(snakePos), 300);
   return (
     <div className="field">
       <Cells />

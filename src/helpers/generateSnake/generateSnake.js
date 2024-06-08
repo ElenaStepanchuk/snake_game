@@ -1,4 +1,5 @@
 import './generateSnake.css';
+import move from '../move/move';
 
 const generateSnake = snakePos => {
   let snakeBody = [
@@ -15,6 +16,8 @@ const generateSnake = snakePos => {
   if (snakeBody[0]) {
     snakeBody[0].classList.add('snakeHead');
   }
-};
-
+if (snakeBody[0]) {
+  let interval = setInterval(move, 300, { snakeBody });
+}
+}
 export default generateSnake;
