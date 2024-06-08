@@ -5,7 +5,6 @@ import Cells from '../cells/Cells';
 import generateSnake from '../../helpers/generateSnake/generateSnake';
 import generateFeed from '../../helpers/generateFeed/generateFeed';
 import generatePosition from '../../helpers/generatePosition/generatePosition';
-// import move from '../../helpers/move/move';
 
 const Game = () => {
   const [snakePos, setSnakePos] = useState([1, 1]);
@@ -18,13 +17,12 @@ const Game = () => {
     setFeedPos([posXF, posYF]);
   }, []);
 
-  generateSnake(snakePos);
+  generateSnake(snakePos, feedPos);
   generateFeed(feedPos);
 
-  // let interval = setInterval(move(snakePos), 300);
   return (
     <div className="field">
-      <Cells />
+      <Cells/>
     </div>
   );
 };

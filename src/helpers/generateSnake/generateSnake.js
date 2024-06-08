@@ -1,7 +1,7 @@
 import './generateSnake.css';
 import move from '../move/move';
 
-const generateSnake = snakePos => {
+const generateSnake = (snakePos, feed) => {
   let snakeBody = [
     document.querySelector(`[posx='${snakePos[0]}'][posy='${snakePos[1]}']`),
     document.querySelector(`[posx='${snakePos[0] - 1}'][posy='${snakePos[1]}']`),
@@ -17,7 +17,7 @@ const generateSnake = snakePos => {
     snakeBody[0].classList.add('snakeHead');
   }
 if (snakeBody[0]) {
-  let interval = setInterval(move, 300, { snakeBody });
+  let interval = setInterval(move, 400, { snakeBody, feed });
 }
 }
 export default generateSnake;
