@@ -13,7 +13,6 @@ const AllUsersList = () => {
   }, []);
 
   const sortedUsers = users.sort((a, b) => b.points - a.points);
-  console.log('users', sortedUsers);
 
   return (
     <div>

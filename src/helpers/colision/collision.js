@@ -1,4 +1,4 @@
-// import generateFeed from '../generateFeed/generateFeed';
+import generateFeed from '../generateFeed/generateFeed';
 import generatePosition from '../../helpers/generatePosition/generatePosition';
 
 const collision = ({ snakeBody, feedBody }) => {
@@ -10,16 +10,21 @@ const collision = ({ snakeBody, feedBody }) => {
     snakeBody[0].getAttribute('posx') === feedBody[0].getAttribute('posx') &&
     snakeBody[0].getAttribute('posy') === feedBody[0].getAttribute('posy')
   ) {
+    console.log('snakeBody', snakeBody);
+    console.log('feedBody', feedBody);
     feedBody[0].classList.remove('feedBody');
 
-    let x = snakeBody[snakeBody.length - 1].getAttribute('posx');
-    let y = snakeBody[snakeBody.length - 1].getAttribute('posy');
+    const newPosition = generatePosition();
+
+    feedBody[0] = generateFeed(newPosition);
+
+    const x = snakeBody[snakeBody.length - 1].getAttribute('posx');
+    const y = snakeBody[snakeBody.length - 1].getAttribute('posy');
     snakeBody.push(document.querySelector(`[posx='${x}'][posy='${y}']`));
 
-    // const [posXF, posYF] = generatePosition();
-    // generateFeed([posXF, posYF]);
-    let newPosition = generatePosition();
-    console.log('newPosition:', newPosition);
+    // const newPosition = generatePosition();
+
+    // feedBody[0] = generateFeed(newPosition);
   }
 
   if (snakeBody[0]) {

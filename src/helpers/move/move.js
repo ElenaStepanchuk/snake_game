@@ -15,13 +15,13 @@ window.addEventListener('keydown', e => {
 
 const move = ({ snakeBody, feedBody }) => {
   if (snakeBody && snakeBody[0]) {
-    let snakeHead = snakeBody[0];
-    let snakeCoordinates = [snakeHead.getAttribute('posx'), snakeHead.getAttribute('posy')];
+    const snakeHead = snakeBody[0];
+    const snakeCoordinates = [snakeHead.getAttribute('posx'), snakeHead.getAttribute('posy')];
 
     if (snakeCoordinates[0] && snakeCoordinates[1]) {
       snakeHead.classList.remove('snakeHead');
 
-      let snakeTail = snakeBody[snakeBody.length - 1];
+      const snakeTail = snakeBody[snakeBody.length - 1];
       if (snakeTail) {
         snakeTail.classList.remove('snakeBody');
       }

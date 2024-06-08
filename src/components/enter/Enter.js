@@ -13,7 +13,7 @@ const Enter = () => {
   const startGame = async event => {
     try {
       const user = await CreateUser(name);
-      console.log('user:', user);
+
       setName('');
     } catch (error) {
       console.error('Error creating user:', error);
