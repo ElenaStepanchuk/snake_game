@@ -1,0 +1,25 @@
+.square {
+  display: flex;
+  width: 5vh;
+  height: 5vh;
+  background: aqua;
+  /* border: 1px solid rgb(0, 173, 173); */
+  box-shadow: 5px 5px 5px black;
+  border-radius: 1vh;
+  margin: 0.5vh;
+  overflow: hidden;
+}
+
+.snake {
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  background: green;
+  border-color: green;
+}
+.food {
+  width: 5vh;
+  height: 5vh;
+  background: orange;
+  border-color: orange;
+}

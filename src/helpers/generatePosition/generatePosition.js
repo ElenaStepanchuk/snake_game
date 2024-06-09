@@ -1,6 +1,6 @@
 const generatePosition = () => {
-  const posX = Math.round(Math.random() * (10 - 3) + 3);
-  const posY = Math.round(Math.random() * (10 - 1) + 1);
+  const posX = Math.round(Math.random() * (8 - 2) + 2);
+  const posY = Math.round(Math.random() * (8 - 1) + 1);
   return [posX, posY];
 };
 
