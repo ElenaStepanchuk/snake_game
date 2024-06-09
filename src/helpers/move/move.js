@@ -69,6 +69,8 @@ const move = ({ snakeBody, feedBody }) => {
 
       if(snakeBody[0].classList.contains('snakeBody')){
          alert("Game end");
+         localStorage.removeItem("user");
+         localStorage.removeItem("game");
       }
 
       if (snakeBody[0]) {

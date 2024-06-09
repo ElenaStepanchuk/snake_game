@@ -8,14 +8,14 @@ const Enter = () => {
   const handleInputChange = event => {
     const { value } = event.target;
     setName(value);
-      };
+  };
 
   const startGame = async () => {
     try {
       const user = await CreateUser(name);
       localStorage.setItem("user", name);
-      // setName('');
-    } catch (error) {
+      localStorage.setItem("game", true);
+         } catch (error) {
       console.error('Error creating user:', error);
     }
   };

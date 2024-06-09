@@ -3,10 +3,15 @@ import Enter from './components/enter/Enter';
 import './App.css';
 import AllUsersList from '../src/components/allUsersList/AllUsersList';
 import Game from './components/game/Game';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [start, setStsrt] = useState(false)
+  const [start, setStart] = useState(false)
+  const gameStart = localStorage.getItem("game");
+  useEffect(() => {
+    setStart(gameStart)  
+  }, []);
+  
   return (
     <div className="App">
       <header className="App-header">

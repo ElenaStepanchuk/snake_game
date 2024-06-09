@@ -14,6 +14,7 @@ if(!snakeBody.length || !feedBody.length) return;
    }
      snakeBody[0].classList.add('snakeHead');
    let interval = setInterval(move, 400, { snakeBody, feedBody });
-  
+   const gameStart = localStorage.getItem("game");
+   if(!gameStart) {clearInterval(interval)}
 };
 export default generateSnake;
