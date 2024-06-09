@@ -14,7 +14,6 @@ window.addEventListener('keydown', e => {
 });
 
 const move = ({ snakeBody, feedBody }) => {
- 
   if (snakeBody && snakeBody[0]) {
     const snakeHead = snakeBody[0];
     const snakeCoordinates = [snakeHead.getAttribute('posx'), snakeHead.getAttribute('posy')];
@@ -67,10 +66,12 @@ const move = ({ snakeBody, feedBody }) => {
         snakeBody.unshift(newHead);
       }
 
-      if(snakeBody[0].classList.contains('snakeBody')){
-         alert("Game end");
-         localStorage.removeItem("user");
-         localStorage.removeItem("game");
+      if (snakeBody[0].classList.contains('snakeBody')) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('game');
+        localStorage.removeItem('points');
+        localStorage.removeItem('speed');
+        return alert('Game end');
       }
 
       if (snakeBody[0]) {

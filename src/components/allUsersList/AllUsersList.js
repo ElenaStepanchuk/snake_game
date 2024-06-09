@@ -12,7 +12,7 @@ const AllUsersList = () => {
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  const sortedUsers = users.sort((a, b) => b.points - a.points);
+  users.sort((a, b) => b.points - a.points);
 
   return (
     <div>

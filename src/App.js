@@ -6,20 +6,25 @@ import Game from './components/game/Game';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [start, setStart] = useState(false)
-  const gameStart = localStorage.getItem("game");
+  const [start, setStart] = useState(false);
+  const gameStart = localStorage.getItem('game');
   useEffect(() => {
-    setStart(gameStart)  
-  }, []);
-  
+    setStart(gameStart);
+  }, [gameStart]);
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Snake game</h1>
       </header>
-      {!start ? (<><Enter />
-      <AllUsersList /></>) :
-       <Game />}
+      {!start ? (
+        <>
+          <Enter />
+          <AllUsersList />
+        </>
+      ) : (
+        <Game />
+      )}
     </div>
   );
 }

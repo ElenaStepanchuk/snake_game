@@ -1,3 +1,9 @@
-.feedBody {
-  background: rgb(55, 0, 255);
+.feedBody1 {
+  background: blue;
+}
+.feedBody2 {
+  background: purple;
+}
+.feedBody3 {
+  background: black;
 }
