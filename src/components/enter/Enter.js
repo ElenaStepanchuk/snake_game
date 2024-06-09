@@ -4,17 +4,17 @@ import './enter.css';
 
 const Enter = () => {
   const [name, setName] = useState('');
-
+  
   const handleInputChange = event => {
     const { value } = event.target;
     setName(value);
-  };
+      };
 
-  const startGame = async event => {
+  const startGame = async () => {
     try {
       const user = await CreateUser(name);
-
-      setName('');
+      localStorage.setItem("user", name);
+      // setName('');
     } catch (error) {
       console.error('Error creating user:', error);
     }

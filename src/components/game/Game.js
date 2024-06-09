@@ -9,6 +9,8 @@ import generatePosition from '../../helpers/generatePosition/generatePosition';
 const Game = () => {
   const [snakePos, setSnakePos] = useState();
   const [feedPos, setFeedPos] = useState();
+  let points = 0;
+  let speed = 1
 
   useEffect(() => {
     const [posX, posY] = generatePosition();
@@ -25,9 +27,13 @@ const Game = () => {
   }, [snakePos, feedPos]);
 
   return (
+    <><p>Points: {points}</p>
+    <p>Speed: {speed}</p>
     <div className="field">
-      <Cells />
-    </div>
+     <Cells />
+  </div>
+  </>
+    
   );
 };
 

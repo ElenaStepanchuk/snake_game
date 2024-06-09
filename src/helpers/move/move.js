@@ -14,6 +14,7 @@ window.addEventListener('keydown', e => {
 });
 
 const move = ({ snakeBody, feedBody }) => {
+ 
   if (snakeBody && snakeBody[0]) {
     const snakeHead = snakeBody[0];
     const snakeCoordinates = [snakeHead.getAttribute('posx'), snakeHead.getAttribute('posy')];
@@ -65,6 +66,11 @@ const move = ({ snakeBody, feedBody }) => {
       if (newHead) {
         snakeBody.unshift(newHead);
       }
+
+      if(snakeBody[0].classList.contains('snakeBody')){
+         alert("Game end");
+      }
+
       if (snakeBody[0]) {
         snakeBody[0].classList.add('snakeHead');
       }
