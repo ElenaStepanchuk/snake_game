@@ -1,22 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  status: 'Start',
+  statusValues: {
+    Start: 'Pause',
+    Pause: 'Resume',
+    Resume: 'Pause',
+  },
+};
+
 const statusSlice = createSlice({
   name: 'status',
-  initialState: 'Start',
+  initialState,
   reducers: {
     changeStatus(state) {
-      const statusValues = {
-        Start: 'Pause',
-        Pause: 'Resume',
-        Resume: 'Pause',
-      };
-      return statusValues[state];
-    },
-    restartStatus() {
-      return 'Start';
+      state.status = state.statusValues[state.status];
     },
   },
 });
 
-export const { changeStatus, restartStatus } = statusSlice.actions;
+export const { changeStatus } = statusSlice.actions;
 export const statusReducer = statusSlice.reducer;

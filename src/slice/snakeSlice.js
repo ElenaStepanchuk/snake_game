@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import generatePosition from '../helpers/generatePosition/generatePosition';
 
 const [posXS, posYS] = generatePosition();
+const [posXF, posYF] = generatePosition();
 
 const snakeSlice = createSlice({
   name: 'snake',
@@ -12,11 +13,21 @@ const snakeSlice = createSlice({
     ],
     snakeHead: { x: posXS + 1, y: posYS },
     snakeSize: 2,
+    food: { x: posXF + 1, y: posYF },
+    direction: 'ArrowRight',
+    stopKeyCombinations: [
+      ['ArrowUp', 'ArrowDown'],
+      ['ArrowDown', 'ArrowUp'],
+      ['ArrowLeft', 'ArrowRight'],
+      ['ArrowRight', 'ArrowLeft'],
+    ],
+    savedKey: 'ArrowRight',
   },
   reducers: {
-    moveSnake(state, action) {
-      let { x, y } = state.head;
-      switch (action.payload) {
+    moveSnake(state) {
+      if (state.status === 'Restart') return;
+      let { x, y } = state.snakeHead;
+      switch (state.direction) {
         case 'ArrowRight':
           x = x >= 9 ? 0 : x + 1;
           break;
@@ -32,24 +43,43 @@ const snakeSlice = createSlice({
         default:
           break;
       }
-      state.head = { x, y };
-      state.body.push({ x, y });
-      state.body = state.body.slice(-state.size);
+      state.snakeHead = { x, y };
+      state.snake.push({ x, y });
+      state.snake = state.snake.slice(-state.snakeSize);
     },
-    growSnake(state) {
-      state.size += 1;
+    checkGameOver(state) {
+      let { x, y } = state.snakeHead;
+      let snakeHeadLess = state.snake.slice();
+      snakeHeadLess.pop();
+      let bitedPlace = null;
+      bitedPlace = snakeHeadLess.find(s => s.x === x && s.y === y);
+      if (bitedPlace) state.status = 'Restart';
     },
-    restartSnake(state) {
-      const [posXS, posYS] = generatePosition();
-      state.body = [
-        { x: posXS, y: posYS },
-        { x: posXS + 1, y: posYS },
-      ];
-      state.head = { x: posXS + 1, y: posYS };
-      state.size = 2;
+    saveKey(state, action) {
+      for (let [a, b] of state.stopKeyCombinations) {
+        if (a === state.direction && b === action.payload) return;
+      }
+      state.savedKey = action.payload;
+    },
+    setDirection(state) {
+      state.direction = state.savedKey;
+    },
+    checkFood(state) {
+      let { food, snakeHead, snake } = state;
+      if (food.x === snakeHead.x && food.y === snakeHead.y) {
+        let isOnSnake = null;
+        do {
+          food.x = Math.floor(Math.random() * 10);
+          food.y = Math.floor(Math.random() * 10);
+          isOnSnake = snake.find(s => s.x === food.x && s.y === food.y);
+        } while (isOnSnake);
+
+        state.food = food;
+        state.snakeSize++;
+      }
     },
   },
 });
 
-export const { moveSnake, growSnake, restartSnake } = snakeSlice.actions;
+export const { moveSnake, checkGameOver, saveKey, setDirection, checkFood } = snakeSlice.actions;
 export const snakeReducer = snakeSlice.reducer;

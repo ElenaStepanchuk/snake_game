@@ -5,9 +5,9 @@ const [posXF, posYF] = generatePosition();
 
 const foodSlice = createSlice({
   name: 'food',
-  initialState: { x: posXF + 1, y: posYF },
+  initialState: { food: { x: posXF + 1, y: posYF } },
   reducers: {
-    repositionFood(state) {
+    checkFood(state) {
       const [newX, newY] = generatePosition();
       state.x = newX;
       state.y = newY;
@@ -15,5 +15,5 @@ const foodSlice = createSlice({
   },
 });
 
-export const { repositionFood } = foodSlice.actions;
+export const { checkFood } = foodSlice.actions;
 export const foodReducer = foodSlice.reducer;
