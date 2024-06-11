@@ -1,23 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   changeStatus,
-//   moveSnake,
-//   setDirection,
-//   checkFood,
-//   checkGameOver,
-// } from '../../store/gameSlice';
-import { moveSnake, checkGameOver, checkFood, setDirection } from '../../slice/snakeSlice';
-// import { setDirection } from '../../slice/snakeSlice';
-// import { checkFood } from '../../slice/snakeSlice';
-import { changeStatus } from '../../slice/statusSlice';
-// import { checkGameOver } from '../../slice/snakeSlice';
+import {
+  changeStatus,
+  moveSnake,
+  setDirection,
+  checkFood,
+  checkGameOver,
+} from '../../slice/gameSlice.js';
 
 import './status.css';
 
 import { useRef } from 'react';
 
 const Status = () => {
-  const status = useSelector(store => store.status.status);
+  const status = useSelector(store => store.game.status);
+  const currentSpeed = useSelector(store => store.game.speed);
   const dispatch = useDispatch();
 
   let timer = useRef(null);
@@ -27,8 +23,9 @@ const Status = () => {
     dispatch(checkFood());
     dispatch(checkGameOver());
   };
+
   const startTimer = () => {
-    timer.current = setInterval(() => update(), 400);
+    timer.current = setInterval(() => update(), 400 - currentSpeed * 50);
   };
   const stopTimer = () => clearInterval(timer.current);
 

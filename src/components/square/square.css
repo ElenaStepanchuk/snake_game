@@ -3,7 +3,6 @@
   width: 5vh;
   height: 5vh;
   background: aqua;
-  /* border: 1px solid rgb(0, 173, 173); */
   box-shadow: 5px 5px 5px black;
   border-radius: 1vh;
   margin: 0.5vh;
@@ -17,9 +16,21 @@
   background: green;
   border-color: green;
 }
-.food {
+.food1 {
   width: 5vh;
   height: 5vh;
   background: orange;
   border-color: orange;
+}
+.food2 {
+  width: 5vh;
+  height: 5vh;
+  background: rgb(197, 11, 126);
+  border-color: rgb(197, 11, 126);
+}
+.food3 {
+  width: 5vh;
+  height: 5vh;
+  background: rgb(2, 2, 105);
+  border-color: rgb(2, 2, 105);
 }

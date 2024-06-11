@@ -1,12 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import generatePosition from '../helpers/generatePosition/generatePosition';
+import getRandomStyle from '../helpers/getRandomStyle/getRundomStyle';
 
 const [posXS, posYS] = generatePosition();
 const [posXF, posYF] = generatePosition();
 
-const snakeSlice = createSlice({
-  name: 'snake',
+const gameSlice = createSlice({
+  name: 'game',
   initialState: {
+    status: 'Start',
+    statusValues: {
+      Start: 'Pause',
+      Pause: 'Resume',
+      Resume: 'Pause',
+    },
     snake: [
       { x: posXS, y: posYS },
       { x: posXS + 1, y: posYS },
@@ -14,6 +21,9 @@ const snakeSlice = createSlice({
     snakeHead: { x: posXS + 1, y: posYS },
     snakeSize: 2,
     food: { x: posXF + 1, y: posYF },
+    foodStyle: getRandomStyle(),
+    points: 0,
+    speed: 0,
     direction: 'ArrowRight',
     stopKeyCombinations: [
       ['ArrowUp', 'ArrowDown'],
@@ -24,6 +34,9 @@ const snakeSlice = createSlice({
     savedKey: 'ArrowRight',
   },
   reducers: {
+    changeStatus(state) {
+      state.status = state.statusValues[state.status];
+    },
     moveSnake(state) {
       if (state.status === 'Restart') return;
       let { x, y } = state.snakeHead;
@@ -47,6 +60,37 @@ const snakeSlice = createSlice({
       state.snake.push({ x, y });
       state.snake = state.snake.slice(-state.snakeSize);
     },
+    checkFood(state) {
+      let { food, snakeHead, snake } = state;
+      if (food.x === snakeHead.x && food.y === snakeHead.y) {
+        let isOnSnake = null;
+        do {
+          food.x = Math.floor(Math.random() * 10);
+          food.y = Math.floor(Math.random() * 10);
+          isOnSnake = snake.find(s => s.x === food.x && s.y === food.y);
+        } while (isOnSnake);
+
+        state.food = food;
+        state.snakeSize++;
+        switch (state.foodStyle) {
+          case 1:
+            state.points++;
+            break;
+          case 2:
+            state.points += 5;
+            break;
+          case 3:
+            state.points += 10;
+            break;
+          default:
+            break;
+        }
+        state.foodStyle = getRandomStyle();
+        if (state.points >= 50 && state.points % 50 === 0) {
+          state.speed++;
+        }
+      }
+    },
     checkGameOver(state) {
       let { x, y } = state.snakeHead;
       let snakeHeadLess = state.snake.slice();
@@ -64,22 +108,9 @@ const snakeSlice = createSlice({
     setDirection(state) {
       state.direction = state.savedKey;
     },
-    checkFood(state) {
-      let { food, snakeHead, snake } = state;
-      if (food.x === snakeHead.x && food.y === snakeHead.y) {
-        let isOnSnake = null;
-        do {
-          food.x = Math.floor(Math.random() * 10);
-          food.y = Math.floor(Math.random() * 10);
-          isOnSnake = snake.find(s => s.x === food.x && s.y === food.y);
-        } while (isOnSnake);
-
-        state.food = food;
-        state.snakeSize++;
-      }
-    },
   },
 });
 
-export const { moveSnake, checkGameOver, saveKey, setDirection, checkFood } = snakeSlice.actions;
-export const snakeReducer = snakeSlice.reducer;
+export const { changeStatus, moveSnake, saveKey, setDirection, checkFood, checkGameOver } =
+  gameSlice.actions;
+export const gameReducer = gameSlice.reducer;

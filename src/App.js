@@ -1,21 +1,13 @@
-// import Enter from './components/enter/Enter';
+import Enter from './components/enter/Enter';
 import { useDispatch } from 'react-redux';
-import { saveKey } from './store/gameSlice';
+import { saveKey } from './slice/gameSlice';
 
 import './App.css';
 import Board from './components/board/Board';
 import Status from './components/status/Status';
-// import AllUsersList from '../src/components/allUsersList/AllUsersList';
-// import Game from './components/game/Game';
-// import { useEffect, useState } from 'react';
+import AllUsersList from '../src/components/allUsersList/AllUsersList';
 
 function App() {
-  // const [start, setStart] = useState(false);
-  // const gameStart = localStorage.getItem('game');
-  // useEffect(() => {
-  //   setStart(gameStart);
-  // }, [gameStart]);
-
   const dispatch = useDispatch();
 
   const keyDownHandler = e => {
@@ -28,15 +20,9 @@ function App() {
       </header>
       <Board />
       <Status />
-      {/* 
-      {!start ? (
-        <>
-          <Enter />
-          <AllUsersList />
-        </>
-      ) : (
-        <Game />
-      )} */}
+
+      <Enter />
+      <AllUsersList />
     </div>
   );
 }

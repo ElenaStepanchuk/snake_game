@@ -2,21 +2,24 @@ import { useSelector } from 'react-redux';
 import './square.css';
 const Square = ({ square }) => {
   const { x, y } = square;
-  const snake = useSelector(store => store.snake.snake);
-  const food = useSelector(store => store.snake.food);
+  const snake = useSelector(store => store.game.snake);
+  const food = useSelector(store => store.game.food);
+  let numberStyle = useSelector(store => store.game.foodStyle);
 
-  let buttonStyle = '';
+  let foodColor = '';
   for (let s of snake) {
     if (s.x === x && s.y === y) {
-      buttonStyle = 'snake';
+      foodColor = 'snake';
     }
   }
 
-  if (x === food.x && y === food.y) buttonStyle = 'food';
+  if (x === food.x && y === food.y) {
+    foodColor = `food${numberStyle}`;
+  }
 
   return (
     <span className="square">
-      <div className={buttonStyle}></div>
+      <div className={foodColor}></div>
     </span>
   );
 };

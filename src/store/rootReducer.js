@@ -1,12 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { statusReducer } from '../slice/statusSlice';
-import { snakeReducer } from '../slice/snakeSlice';
-// import { foodReducer } from '../slice/foodSlice';
+import { gameReducer } from '../slice/gameSlice';
 
 const rootReducer = combineReducers({
-  status: statusReducer,
-  snake: snakeReducer,
-  // food: foodReducer,
+  game: gameReducer,
 });
 
 export default rootReducer;
