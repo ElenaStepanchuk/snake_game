@@ -3,8 +3,6 @@ import CreateUser from '../../api/createUser/createUser';
 import './enter.css';
 import { useDispatch } from 'react-redux';
 import { playGame } from '../../slice/gameSlice';
-import FindUserByName from '../../api/findUserByName/findUserByName';
-import UpdateUser from '../../api/updateUser/UpdateUser';
 
 const Enter = () => {
   const [name, setName] = useState('');
