@@ -3,6 +3,8 @@ import CreateUser from '../../api/createUser/createUser';
 import './enter.css';
 import { useDispatch } from 'react-redux';
 import { playGame } from '../../slice/gameSlice';
+import FindUserByName from '../../api/findUserByName/findUserByName';
+import UpdateUser from '../../api/updateUser/UpdateUser';
 
 const Enter = () => {
   const [name, setName] = useState('');
@@ -17,7 +19,12 @@ const Enter = () => {
   const startGame = async e => {
     try {
       e.preventDefault();
-      await CreateUser(name);
+      const currentUser = await FindUserByName(name);
+      if (currentUser) {
+        await UpdateUser(currentUser.id, name, null, 0);
+      } else {
+        await CreateUser(name);
+      }
       localStorage.setItem('user_name', name);
       dispatch(playGame());
     } catch (error) {

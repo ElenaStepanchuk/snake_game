@@ -12,6 +12,3 @@ const AllUsersList = async () => {
 };
 
 export default AllUsersList;
-
-// npm install run build
-// npm run start

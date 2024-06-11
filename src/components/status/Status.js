@@ -17,6 +17,7 @@ const Status = () => {
   const status = useSelector(store => store.game.status);
   const currentSpeed = useSelector(store => store.game.speed);
   const currentPoints = useSelector(store => store.game.points);
+
   const dispatch = useDispatch();
 
   let timer = useRef(null);

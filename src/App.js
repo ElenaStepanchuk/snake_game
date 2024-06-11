@@ -30,6 +30,8 @@ function App() {
           <AllUsersList />
         </>
       )}
+      {/* <Board />
+      <Status /> */}
     </div>
   );
 }
