@@ -19,12 +19,7 @@ const Enter = () => {
   const startGame = async e => {
     try {
       e.preventDefault();
-      const currentUser = await FindUserByName(name);
-      if (currentUser) {
-        await UpdateUser(currentUser.id, name, null, 0);
-      } else {
-        await CreateUser(name);
-      }
+      await CreateUser(name);
       localStorage.setItem('user_name', name);
       dispatch(playGame());
     } catch (error) {
