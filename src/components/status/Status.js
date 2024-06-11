@@ -6,6 +6,8 @@ import {
   checkFood,
   checkGameOver,
 } from '../../slice/gameSlice.js';
+import UpdateUser from '../../api/updateUser/UpdateUser.js';
+import FindUserByName from '../../api/findUserByName/findUserByName.js';
 
 import './status.css';
 
@@ -14,6 +16,7 @@ import { useRef } from 'react';
 const Status = () => {
   const status = useSelector(store => store.game.status);
   const currentSpeed = useSelector(store => store.game.speed);
+  const currentPoints = useSelector(store => store.game.points);
   const dispatch = useDispatch();
 
   let timer = useRef(null);
@@ -29,8 +32,12 @@ const Status = () => {
   };
   const stopTimer = () => clearInterval(timer.current);
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     if (status === 'Restart') {
+      const user = localStorage.getItem('user_name');
+      const currentUser = await FindUserByName(user);
+      await UpdateUser(currentUser.id, null, null, currentPoints);
+      localStorage.removeItem('user_name');
       window.location.reload();
       return;
     }

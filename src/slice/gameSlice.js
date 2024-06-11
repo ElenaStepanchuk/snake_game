@@ -25,6 +25,7 @@ const gameSlice = createSlice({
     foodStyle: getRandomStyle(),
     points: 0,
     speed: 0,
+    lastSpeedIncrease: 0,
     direction: 'ArrowRight',
     stopKeyCombinations: [
       ['ArrowUp', 'ArrowDown'],
@@ -90,8 +91,10 @@ const gameSlice = createSlice({
             break;
         }
         state.foodStyle = getRandomStyle();
-        if (state.points >= 50 && state.points % 50 === 0) {
+
+        while (state.points - state.lastSpeedIncrease >= 50) {
           state.speed++;
+          state.lastSpeedIncrease += 50;
         }
       }
     },

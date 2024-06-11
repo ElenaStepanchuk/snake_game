@@ -10,7 +10,6 @@ import AllUsersList from '../src/components/allUsersList/AllUsersList';
 function App() {
   const dispatch = useDispatch();
   const play = useSelector(store => store.game.play);
-  console.log('play:', play);
 
   const keyDownHandler = e => {
     dispatch(saveKey(e.key));

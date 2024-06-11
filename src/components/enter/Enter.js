@@ -17,9 +17,9 @@ const Enter = () => {
   const startGame = async e => {
     try {
       e.preventDefault();
-      dispatch(playGame());
       await CreateUser(name);
-      // dispatch(playGame());
+      localStorage.setItem('user_name', name);
+      dispatch(playGame());
     } catch (error) {
       console.error('Error creating user:', error);
     }

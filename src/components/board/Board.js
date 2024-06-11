@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-
 import Square from '../square/Square';
 import './board.css';
 
