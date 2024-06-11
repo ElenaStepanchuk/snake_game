@@ -1,6 +1,6 @@
 const UpdateUser = async (id, name, speed = 1, points = 0) => {
   try {
-    const response = await fetch(`http://localhost:4000/api/users/${id}`, {
+    const response = await fetch(`https://snake-be.onrender.com/api/users/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

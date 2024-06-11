@@ -1,6 +1,6 @@
 const FindUserById = async id => {
   try {
-    const response = await fetch(`http://localhost:4000/api/users/${id}`, {
+    const response = await fetch(`https://snake-be.onrender.com/api/users/${id}`, {
       method: 'GET',
     });
 

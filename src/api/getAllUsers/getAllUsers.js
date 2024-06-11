@@ -1,6 +1,6 @@
 const AllUsersList = async () => {
   try {
-    const response = await fetch('http://localhost:4000/api/users/');
+    const response = await fetch('https://snake-be.onrender.com/api/users/');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -12,3 +12,6 @@ const AllUsersList = async () => {
 };
 
 export default AllUsersList;
+
+// npm install run build
+// npm run start

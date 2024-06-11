@@ -1,6 +1,6 @@
 const CreateUser = async name => {
   try {
-    const response = await fetch('http://localhost:4000/api/users', {
+    const response = await fetch('https://snake-be.onrender.com/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -37,7 +37,7 @@ const Enter = () => {
           onChange={handleInputChange}
         ></input>
         <button className="form_button" type="submit">
-          Enter game
+          Start game
         </button>
       </form>
     </div>
