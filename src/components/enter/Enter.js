@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import CreateUser from '../../api/createUser/createUser';
 import './enter.css';
+import { useDispatch } from 'react-redux';
+import { playGame } from '../../slice/gameSlice';
 
 const Enter = () => {
   const [name, setName] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleInputChange = event => {
     const { value } = event.target;
     setName(value);
   };
 
-  const startGame = async () => {
+  const startGame = async e => {
     try {
+      e.preventDefault();
       await CreateUser(name);
-      localStorage.setItem('user', name);
-      localStorage.setItem('game', true);
+      localStorage.setItem('user_name', name);
+      dispatch(playGame());
     } catch (error) {
       console.error('Error creating user:', error);
     }

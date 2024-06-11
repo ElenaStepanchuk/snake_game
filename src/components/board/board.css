@@ -1,0 +1,18 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  background: aqua;
+  border-radius: 1vh;
+}
+.points_container {
+  display: flex;
+  margin-bottom: 2vh;
+  width: 60vh;
+  justify-content: space-between;
+}
+.points {
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  font-weight: 700;
+  color: #3f4450;
+}

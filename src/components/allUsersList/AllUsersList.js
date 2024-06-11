@@ -12,20 +12,26 @@ const AllUsersList = () => {
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  users.sort((a, b) => b.points - a.points);
+  if (users) users.sort((a, b) => b.points - a.points);
 
   return (
     <div>
       <h2 className="list_title">List of record holders:</h2>
-      <ul className="user_list">
-        {users.map(user => (
-          <li key={user.id}>
-            <p className="user_item">
-              {user.user_name} <span className="item_span">Record:</span> {user.points}
-            </p>
-          </li>
-        ))}
-      </ul>
+      {users ? (
+        <ul className="user_list">
+          {users?.map(user => (
+            <li key={user.id}>
+              <p className="user_item">
+                {user.user_name} <span className="item_span">Record:</span> {user.points}
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div>
+          <p>Didn't find any users!</p>
+        </div>
+      )}
     </div>
   );
 };

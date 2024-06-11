@@ -1,29 +1,34 @@
 import Enter from './components/enter/Enter';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveKey } from './slice/gameSlice';
 
 import './App.css';
+import Board from './components/board/Board';
+import Status from './components/status/Status';
 import AllUsersList from '../src/components/allUsersList/AllUsersList';
-import Game from './components/game/Game';
-import { useEffect, useState } from 'react';
 
 function App() {
-  const [start, setStart] = useState(false);
-  const gameStart = localStorage.getItem('game');
-  useEffect(() => {
-    setStart(gameStart);
-  }, [gameStart]);
+  const dispatch = useDispatch();
+  const play = useSelector(store => store.game.play);
 
+  const keyDownHandler = e => {
+    dispatch(saveKey(e.key));
+  };
   return (
-    <div className="App">
+    <div className="App" onKeyDownCapture={keyDownHandler}>
       <header className="App-header">
         <h1>Snake game</h1>
       </header>
-      {!start ? (
+      {play ? (
+        <>
+          <Board />
+          <Status />
+        </>
+      ) : (
         <>
           <Enter />
           <AllUsersList />
         </>
-      ) : (
-        <Game />
       )}
     </div>
   );
