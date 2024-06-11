@@ -21,6 +21,7 @@ const Status = () => {
   const dispatch = useDispatch();
 
   let timer = useRef(null);
+
   const update = () => {
     dispatch(moveSnake());
     dispatch(setDirection());

@@ -12,7 +12,9 @@ function App() {
   const play = useSelector(store => store.game.play);
 
   const keyDownHandler = e => {
-    dispatch(saveKey(e.key));
+    if (e.key.startsWith('Arrow')) {
+      dispatch(saveKey(e.key));
+    }
   };
   return (
     <div className="App" onKeyDownCapture={keyDownHandler}>
@@ -30,8 +32,6 @@ function App() {
           <AllUsersList />
         </>
       )}
-      {/* <Board />
-      <Status /> */}
     </div>
   );
 }
