@@ -8,6 +8,7 @@ const [posXF, posYF] = generatePosition();
 const gameSlice = createSlice({
   name: 'game',
   initialState: {
+    play: false,
     status: 'Start',
     statusValues: {
       Start: 'Pause',
@@ -34,6 +35,9 @@ const gameSlice = createSlice({
     savedKey: 'ArrowRight',
   },
   reducers: {
+    playGame(state) {
+      state.play = true;
+    },
     changeStatus(state) {
       state.status = state.statusValues[state.status];
     },
@@ -111,6 +115,13 @@ const gameSlice = createSlice({
   },
 });
 
-export const { changeStatus, moveSnake, saveKey, setDirection, checkFood, checkGameOver } =
-  gameSlice.actions;
+export const {
+  playGame,
+  changeStatus,
+  moveSnake,
+  saveKey,
+  setDirection,
+  checkFood,
+  checkGameOver,
+} = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

@@ -1,5 +1,5 @@
 import Enter from './components/enter/Enter';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveKey } from './slice/gameSlice';
 
 import './App.css';
@@ -9,6 +9,8 @@ import AllUsersList from '../src/components/allUsersList/AllUsersList';
 
 function App() {
   const dispatch = useDispatch();
+  const play = useSelector(store => store.game.play);
+  console.log('play:', play);
 
   const keyDownHandler = e => {
     dispatch(saveKey(e.key));
@@ -18,11 +20,17 @@ function App() {
       <header className="App-header">
         <h1>Snake game</h1>
       </header>
-      <Board />
-      <Status />
-
-      <Enter />
-      <AllUsersList />
+      {play ? (
+        <>
+          <Board />
+          <Status />
+        </>
+      ) : (
+        <>
+          <Enter />
+          <AllUsersList />
+        </>
+      )}
     </div>
   );
 }
